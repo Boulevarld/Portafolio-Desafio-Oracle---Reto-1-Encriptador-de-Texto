@@ -1,22 +1,58 @@
-class Person {
-2	  private String name;
-3	  public Person(String theName) {
-4	    this.name = theName;
-5	  }
-6	}
-7	
-8	public class Student extends Person {
-9	  private int id;
-10	  public static int nextId = 1;
-11	  public Student(String theName) {
-12	    super(theName);
-13	    id = nextId++;
-14	  }
-15	
-16	  public static void main(String[] args) {
-17	    Person e1 = new Student("Alice");
-18	    Person e2 = new Student("Bob");
-19	    Person e3 = new Student("Carol");
-20	    Person arrayOfPeople[] = {e1, e2, e3};
-21	  }
-22	}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Encryptor and Decryptor</title>
+</head>
+<body>
+    <label for="text">Enter text:</label>
+    <input type="text" id="text" placeholder="Enter text to encrypt/decrypt">
+
+    <select id="mode">
+        <option value="encrypt">Encrypt</option>
+        <option value="decrypt">Decrypt</option>
+    </select>
+
+    <button onclick="processText()">Submit</button>
+
+    <div id="result"></div>
+
+    <script>
+        const encryptionKeys = {
+            'e': 'enter',
+            'i': 'imes',
+            'a': 'ai',
+            'o': 'ober',
+            'u': 'ufat'
+        };
+
+        function encryptText(text) {
+            let encryptedText = text.split('').map(char => encryptionKeys[char] || char).join('');
+            return encryptedText;
+        }
+
+        function decryptText(text) {
+            let decryptedText = text;
+            for (let key in encryptionKeys) {
+                decryptedText = decryptedText.split(encryptionKeys[key]).join(key);
+            }
+            return decryptedText;
+        }
+
+        function processText() {
+            const inputText = document.getElementById('text').value;
+            const mode = document.getElementById('mode').value;
+            let result = '';
+
+            if (mode === 'encrypt') {
+                result = encryptText(inputText);
+            } else if (mode === 'decrypt') {
+                result = decryptText(inputText);
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>

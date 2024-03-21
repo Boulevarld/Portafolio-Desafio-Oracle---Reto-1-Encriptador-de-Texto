@@ -1,1 +1,22 @@
-
+class Person {
+2	  private String name;
+3	  public Person(String theName) {
+4	    this.name = theName;
+5	  }
+6	}
+7	
+8	public class Student extends Person {
+9	  private int id;
+10	  public static int nextId = 1;
+11	  public Student(String theName) {
+12	    super(theName);
+13	    id = nextId++;
+14	  }
+15	
+16	  public static void main(String[] args) {
+17	    Person e1 = new Student("Alice");
+18	    Person e2 = new Student("Bob");
+19	    Person e3 = new Student("Carol");
+20	    Person arrayOfPeople[] = {e1, e2, e3};
+21	  }
+22	}
